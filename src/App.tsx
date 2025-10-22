@@ -178,13 +178,13 @@ function App() {
         <Container maxWidth="xl" sx={{ pb: 4 }}>
           <Box sx={{ 
             display: 'grid',
-            gridTemplateColumns: { xs: '1fr', lg: '1fr 1.5fr' },
+            gridTemplateColumns: '1fr',
             gap: 4,
             justifyContent: 'center'
           }}>
             {/* Left Column - Form */}
             <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-              <Box sx={{ position: 'sticky', top: 20, width: '100%' }}>
+              <Box sx={{ position: 'sticky', top: 20, width: '100%', maxWidth: '800px' }}>
                 <LoanForm onSubmit={onSubmit} disabled={loading} />
                 
                 {error && (

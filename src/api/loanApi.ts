@@ -1,6 +1,6 @@
 import type { LoanCalculationRequest, LoanCalculationResponse } from '../types/loan'
 
-const baseUrl = import.meta.env.VITE_API_BASE_URL || 'https://kreditnikalkulator.eu-central-1.elasticbeanstalk.com'
+const baseUrl = import.meta.env.VITE_API_BASE_URL || 'http://kreditnikalkulator.eu-central-1.elasticbeanstalk.com:8080'
 
 export async function calculateLoan(
   payload: LoanCalculationRequest,

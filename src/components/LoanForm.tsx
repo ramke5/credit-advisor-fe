@@ -4,7 +4,6 @@ import {
   TextField,
   Button,
   Box,
-  Grid,
   Alert,
   CircularProgress,
   InputAdornment,
@@ -91,22 +90,20 @@ export default function LoanForm({ onSubmit, disabled }: LoanFormProps) {
         </Box>
 
         <Box component="form" onSubmit={handleSubmit} sx={{ mt: 3 }}>
-          <Grid container spacing={3}>
-            <Grid item xs={12}>
-              <TextField
-                fullWidth
-                label="Iznos kredita"
-                type="number"
-                value={amount}
-                onChange={(e) => setAmount(e.target.value)}
-                placeholder="npr. 250000"
-                required
-                disabled={disabled}
-                helperText="Unesite ukupan iznos kredita"
-              />
-            </Grid>
+          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+            <TextField
+              fullWidth
+              label="Iznos kredita"
+              type="number"
+              value={amount}
+              onChange={(e) => setAmount(e.target.value)}
+              placeholder="npr. 250000"
+              required
+              disabled={disabled}
+              helperText="Unesite ukupan iznos kredita"
+            />
 
-            <Grid item xs={12} sm={6}>
+            <Box sx={{ display: 'grid', gridTemplateColumns: { xs: '1fr', sm: '1fr 1fr' }, gap: 3 }}>
               <TextField
                 fullWidth
                 label="Kamatna stopa"
@@ -125,9 +122,7 @@ export default function LoanForm({ onSubmit, disabled }: LoanFormProps) {
                 }}
                 helperText="Godišnja kamatna stopa u procentima"
               />
-            </Grid>
 
-            <Grid item xs={12} sm={6}>
               <TextField
                 fullWidth
                 label="Rok otplate"
@@ -146,28 +141,26 @@ export default function LoanForm({ onSubmit, disabled }: LoanFormProps) {
                 }}
                 helperText="Rok otplate u mjesecima (1-600)"
               />
-            </Grid>
+            </Box>
 
-            <Grid item xs={12}>
-              <FormControl fullWidth required>
-                <InputLabel>Tip kamatne stope</InputLabel>
-                <Select
-                  value={interestRateType}
-                  label="Tip kamatne stope"
-                  onChange={(e) => setInterestRateType(e.target.value as 'FIXED' | 'VARIABLE')}
-                  disabled={disabled}
-                  startAdornment={
-                    <InputAdornment position="start">
-                      {interestRateType === 'FIXED' ? <TrendingUp /> : <TrendingDown />}
-                    </InputAdornment>
-                  }
-                >
-                  <MenuItem value="FIXED">Fiksna stopa</MenuItem>
-                  <MenuItem value="VARIABLE">Promjenjiva stopa</MenuItem>
-                </Select>
-              </FormControl>
-            </Grid>
-          </Grid>
+            <FormControl fullWidth required>
+              <InputLabel>Tip kamatne stope</InputLabel>
+              <Select
+                value={interestRateType}
+                label="Tip kamatne stope"
+                onChange={(e) => setInterestRateType(e.target.value as 'FIXED' | 'VARIABLE')}
+                disabled={disabled}
+                startAdornment={
+                  <InputAdornment position="start">
+                    {interestRateType === 'FIXED' ? <TrendingUp /> : <TrendingDown />}
+                  </InputAdornment>
+                }
+              >
+                <MenuItem value="FIXED">Fiksna stopa</MenuItem>
+                <MenuItem value="VARIABLE">Promjenjiva stopa</MenuItem>
+              </Select>
+            </FormControl>
+          </Box>
 
           {errors && (
             <Box sx={{ mt: 2 }}>

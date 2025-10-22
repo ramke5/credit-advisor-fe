@@ -6,9 +6,7 @@ import {
   Container, 
   Typography, 
   Box, 
-  Alert,
-  Paper,
-  Grid
+  Alert
 } from '@mui/material'
 import LoanForm from './components/LoanForm'
 import Results from './components/Results'
@@ -178,9 +176,14 @@ function App() {
 
         {/* Main Content */}
         <Container maxWidth="xl" sx={{ pb: 4 }}>
-          <Grid container spacing={4} sx={{ justifyContent: 'center' }}>
+          <Box sx={{ 
+            display: 'grid',
+            gridTemplateColumns: { xs: '1fr', lg: '1fr 1.5fr' },
+            gap: 4,
+            justifyContent: 'center'
+          }}>
             {/* Left Column - Form */}
-            <Grid item xs={12} lg={5} xl={4} sx={{ display: 'flex', justifyContent: 'center' }}>
+            <Box sx={{ display: 'flex', justifyContent: 'center' }}>
               <Box sx={{ position: 'sticky', top: 20, width: '100%' }}>
                 <LoanForm onSubmit={onSubmit} disabled={loading} />
                 
@@ -190,17 +193,17 @@ function App() {
                   </Box>
                 )}
               </Box>
-            </Grid>
+            </Box>
 
             {/* Right Column - Results */}
-            <Grid item xs={12} lg={7} xl={8}>
+            <Box>
               {result && (
                 <Box>
                   <Results data={result} />
                 </Box>
               )}
-            </Grid>
-          </Grid>
+            </Box>
+          </Box>
         </Container>
         </Box>
       </Box>
